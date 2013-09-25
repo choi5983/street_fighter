@@ -1,0 +1,34 @@
+<html>
+<head>
+	<title>Street Fighter Demo - Created by CodingDojo</title>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<script type="text/javascript" src="js/game.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			a = new PlayGround('ch1');	//create a new playGround and pass the id where the first character will be displayed
+			a.initialize();
+			setInterval(a.mainLoop, 200);
+		});
+	</script>
+</head>
+<body>
+
+	<div id="field">
+		<div id="ch1" class="character"></div>
+		<div id="ch2" class="character"></div>
+	</div>
+
+	<h2>Direction</h2>
+	<ul>
+		<li>Arrow keys (up, down, left, right): have the character move</li>
+		<li>A: Punch</li>
+		<li>S: Kick</li>
+		<li>D: Beam?</li>
+		<li>F: Round House</li>
+	</ul>
+
+	<h2>Street Fighter Mimic: Built with Javascript and HTML</h2>
+	<p>Javascript file: ~100 lines of code</p>
+</body>
+</html>
