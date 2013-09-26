@@ -57,7 +57,6 @@ function Character(selector)
 	}
 	var counter = 0;			//stores which sprite (in the x-direction) it should display 
 	this.action = "STANDING";	//default action is for the character to stand
-	var prev_action = this.action;	//store the previous action of the character
 	this.ch_x=0;					//x_coordinate of the character
 	this.ch_y=0;					//y_coordinate of the character
 	//ch_x, ch_y and action could really all be private variables and I could have just done var instead of this. but to make debuggin easier, I am making them an instance variable so that it would display when you log the chracter object
@@ -87,9 +86,6 @@ function Character(selector)
 			this.ch_x = this.ch_x-10;
 		else if(this.action == 'WALK_RIGHT')
 			this.ch_x = this.ch_x+10;
-		
-		//store the action in prev_action variable so that we can detect when a new action occurs
-		prev_action = this.action;
 	}
 
 	//draws the character on the screen
