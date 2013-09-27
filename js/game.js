@@ -2,32 +2,26 @@ function PlayGround(selector_ch1)
 {
 	//create the first character
 	var ch1 = new Character(selector_ch1);
-	
+
+	//map of action and the respective keyCode
+	var actionKeyMap = {
+		"WALK_RIGHT": 39,	//right arrow
+		"WALK_LEFT": 37,	//left arrow
+		"KNEEL": 40,		//down arrow
+		"PUNCH": 65,		//a button
+		"KICK": 83,			//s button
+		"BEAM": 68,			//d button
+		"ROUND_HOUSE": 70	//f button
+	}
+
 	//attaches event listener to the document listening for key strokes
 	this.initialize = function()
 	{
 		$(document).keydown(function(e) {
-			//if the user pressed 'D'
-			if(e.keyCode == 39) {
-				ch1.updateAction("WALK_RIGHT");
-			}
-			else if(e.keyCode == 37) {
-				ch1.updateAction("WALK_LEFT");
-			}
-			else if(e.keyCode == 40) {
-				ch1.updateAction("KNEEL");
-			}
-			else if(e.keyCode == 65) {
-				ch1.updateAction("PUNCH");
-			}
-			else if(e.keyCode == 83) {
-				ch1.updateAction("KICK");
-			}
-			else if(e.keyCode == 68) {
-				ch1.updateAction("BEAM");
-			}
-			else if(e.keyCode == 70) {
-				ch1.updateAction("ROUND_HOUSE");
+			for(action in actionKeyMap)
+			{
+				if(e.keyCode == actionKeyMap[action])
+					ch1.updateAction(action);
 			}
 		});
 	}
@@ -57,13 +51,11 @@ function Character(selector)
 	}
 	var counter = 0;			//stores which sprite (in the x-direction) it should display 
 	this.action = "STANDING";	//default action is for the character to stand
-	this.ch_x=0;					//x_coordinate of the character
-	this.ch_y=0;					//y_coordinate of the character
-	//ch_x, ch_y and action could really all be private variables and I could have just done var instead of this. but to make debuggin easier, I am making them an instance variable so that it would display when you log the chracter object
+	this.position = {x:0, y:0}	//store the character's position this could be a private object but to make it easier to debug we're making it priliveged
 
 	this.drawSprite = function(y, x)
 	{
-		$('#'+selector).css('background', "url('images/ken.png') "+x*(-70)+"px "+(-80*y)+"px").css('left', this.ch_x+"px");
+		$('#'+selector).css('background', "url('images/ken.png') "+x*(-70)+"px "+(-80*y)+"px").css('left', this.position.x+"px");
 	}
 
 	//updates the action
@@ -72,6 +64,7 @@ function Character(selector)
 		counter=0;
 		this.action = action;
 	}
+
 	//updates the character's coordinates and changes the sprite's counter to simulate the character moving
 	this.updateCoordinate = function()
 	{
@@ -81,11 +74,11 @@ function Character(selector)
 			//if action is anything other than 'STANDING' change the action back to 'STANDING'
 			this.action = 'STANDING';
 		}
-
+		
 		if(this.action == 'WALK_LEFT')
-			this.ch_x = this.ch_x-10;
+			this.position.x = this.position.x-10;
 		else if(this.action == 'WALK_RIGHT')
-			this.ch_x = this.ch_x+10;
+			this.position.x = this.position.x+10;
 	}
 
 	//draws the character on the screen
