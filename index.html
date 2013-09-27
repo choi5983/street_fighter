@@ -6,26 +6,32 @@
 	<script type="text/javascript" src="js/game.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function(){
-			a = new PlayGround('ch1');	//create a new playGround and pass the id where the first character will be displayed
-			a.initialize();
-			setInterval(a.mainLoop, 200);
+			a = new PlayGround('field');	//create a new playGround and pass the id where the first character will be displayed
+			setInterval(a.mainLoop, 150);
 		});
 	</script>
 </head>
 <body>
 
-	<div id="field">
-		<div id="ch1" class="character"></div>
-		<div id="ch2" class="character"></div>
-	</div>
+	<canvas id="field"></canvas>
 
-	<h2>Direction</h2>
+	<h2>Player	1</h2>
 	<ul>
-		<li>Arrow keys (up, down, left, right): have the character move</li>
-		<li>A: Punch</li>
-		<li>S: Kick</li>
-		<li>D: Beam?</li>
-		<li>F: Round House</li>
+		<li>A: LEFT</li>
+		<li>D: RIGHT</li>
+		<li>S: KNEEL</li>
+		<li>Q: PUNCH</li>
+		<li>W: KICK</li>
+		<li>E: ROUND HOUSE</li>
+	</ul>
+	<h2>Player	2</h2>
+	<ul>
+		<li>LEFT ARROW: LEFT</li>
+		<li>RIGHT ARROW: RIGHT</li>
+		<li>DOWN ARROW: KNEEL</li>
+		<li><: PUNCH</li>
+		<li>>: KICK</li>
+		<li>?: ROUND HOUSE</li>
 	</ul>
 
 	<h2>Street Fighter Mimic: Built with Javascript and HTML</h2>
